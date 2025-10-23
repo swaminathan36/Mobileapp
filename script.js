@@ -28,7 +28,7 @@ form.addEventListener("submit", async (e) => {
 
   // Send data to backend for SMS
   try {
-    const res = await fetch('http://localhost:3000/send-donation', {
+    const res = await fetch('https://mobileapp-405d.onrender.com/send-donation', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({wasteType, weight })
@@ -63,4 +63,5 @@ function displayTable() {
     `;
     tableBody.appendChild(row);
   });
+
 }
