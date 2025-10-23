@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waste Donation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>♻ Waste Donation System</h1>
+    <p class="subtitle">Donate your waste and make a green impact 🌍</p>
+    
+    <form id="donationForm">
+      <div class="input-group">
+        <label for="username">Your Number:</label>
+        <input type="text" id="username" placeholder="Enter your number" required>
+      </div>
+
+      <div class="input-group">
+        <label for="wasteType">Waste Type:</label>
+        <select id="wasteType" required>
+          <option value="">--Select Type--</option>
+          <option value="Plastic">Plastic</option>
+          <option value="Paper">Paper</option>
+          <option value="Metal">Metal</option>
+          <option value="Glass">Glass</option>
+          <option value="E-Waste">E-Waste</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter weight" min="0.1" step="0.1" required>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Donation</button>
+    </form>
+
+    <p id="message"></p>
+
+    <h2>♻ Your Donation Records</h2>
+
+    <!-- Scrollable Table Wrapper -->
+    <div id="recordsTableWrapper">
+      <table id="recordsTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Waste Type</th>
+            <th>Weight (kg)</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <p> Every small action counts — keep donating responsibly!</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

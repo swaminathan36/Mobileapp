@@ -1,0 +1,158 @@
+/* --- General Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Body Styling --- */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(to right, #a8e063, #56ab2f);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --- Main Container --- */
+.container {
+  max-width: 500px;
+  background: #ffffffd9;
+  padding: 25px;
+  margin: 40px auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* --- Headings --- */
+h1 {
+  color: #2e7d32;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+/* --- Form Styling --- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: stretch;
+}
+
+.input-group {
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #1b5e20;
+  margin-bottom: 5px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #a5d6a7;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #2e7d32;
+  outline: none;
+  box-shadow: 0 0 5px #66bb6a;
+}
+
+/* --- Button --- */
+.submit-btn {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #2e7d32;
+  transform: scale(1.03);
+}
+
+/* --- Message --- */
+#message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #1b5e20;
+  min-height: 20px;
+}
+
+/* --- Scrollable Table --- */
+#recordsTableWrapper {
+  max-height: 180px; /* Around 3 rows */
+  overflow-y: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* --- Table --- */
+#recordsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #66bb6a;
+  color: white;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+td {
+  padding: 8px;
+  background-color: #f9fbe7;
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: #f1f8e9;
+}
+
+/* --- Scrollbar Style --- */
+#recordsTableWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+#recordsTableWrapper::-webkit-scrollbar-thumb {
+  background-color: #81c784;
+  border-radius: 10px;
+}
+
+#recordsTableWrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #388e3c;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 15px;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: #2e7d32;
+}
