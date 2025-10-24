@@ -1,42 +1,4 @@
-// require('dotenv').config();
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
-// const twilio = require('twilio');
-
-// const app = express();
-// const port = 3000;
-
-// app.use(cors());
-// app.use(bodyParser.json());
-
-// const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-
-// app.post('/send-donation', async (req, res) => {
-//   const {wasteType, weight } = req.body;
-
-//   if (!wasteType || !weight) {
-//     return res.status(400).json({ success: false, message: 'All fields are required.' });
-//   }
-
-//   // Construct SMS message
-//   const smsMessage = `Thank you! Your ${wasteType} donation (${weight} kg) is recorded.`;
-
-//   try {
-//     const msg = await client.messages.create({
-//       body: smsMessage,
-//       from: process.env.TWILIO_PHONE_NUMBER,
-//       to: process.env.MY_PHONE_NUMBER// assuming username is the phone number
-//     });
-
-//     res.json({ success: true, sid: msg.sid });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ success: false, message: err.message });
-//   }
-// });
-
-// app.listen(port, () => console.log(`🚀 Server running at http://localhost:${port}`));
+// server.js
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -44,13 +6,36 @@ const cors = require('cors');
 const twilio = require('twilio');
 
 const app = express();
+
+// ✅ Use Railway dynamic port
 const port = process.env.PORT || 10000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
+// 🔹 Check required environment variables before initializing Twilio
+const requiredEnv = [
+  'TWILIO_ACCOUNT_SID',
+  'TWILIO_AUTH_TOKEN',
+  'TWILIO_PHONE_NUMBER',
+  'RECIPIENT_NUMBER'
+];
+
+const missingEnv = requiredEnv.filter((key) => !process.env[key]);
+if (missingEnv.length > 0) {
+  console.error(`❌ Missing environment variables: ${missingEnv.join(', ')}`);
+  process.exit(1); // stop the server if any env variable is missing
+}
+
+// 🔹 Initialize Twilio client
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
+// 🔹 Root route for health check
+app.get('/', (req, res) => {
+  res.send('✅ Donation backend is running!');
+});
+
+// 🔹 Donation POST route
 app.post('/send-donation', async (req, res) => {
   const { wasteType, weight } = req.body;
 
@@ -64,24 +49,18 @@ app.post('/send-donation', async (req, res) => {
     const msg = await client.messages.create({
       body: smsMessage,
       from: process.env.TWILIO_PHONE_NUMBER,
-      to: process.env.RECIPIENT_NUMBER  // always sends to predefined number
+      to: process.env.RECIPIENT_NUMBER
     });
 
     res.json({ success: true, sid: msg.sid });
   } catch (err) {
-    console.error(err);
+    console.error('Twilio error:', err.message);
     res.status(500).json({ success: false, message: err.message });
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("✅ Donation backend is running!");
+// 🔹 Start server
+app.listen(port, '0.0.0.0', () => {
+  console.log(`🚀 Server running on port ${port}`);
+  console.log('PORT env variable =', process.env.PORT);
 });
-
-
-app.listen(port, "0.0.0.0", () => console.log(`🚀 Server running at port ${port}`));
-
-
-
-
-
