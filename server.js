@@ -74,7 +74,12 @@ app.post('/send-donation', async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("✅ Donation backend is running!");
+});
+
 
 app.listen(port, () => console.log(`🚀 Server running at http://localhost:${port}`));
+
 
 
