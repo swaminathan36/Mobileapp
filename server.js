@@ -44,7 +44,7 @@ const cors = require('cors');
 const twilio = require('twilio');
 
 const app = express();
-const port = process.env.PORT || 10000;
+const port = 8080;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -76,4 +76,5 @@ app.post('/send-donation', async (req, res) => {
 
 
 app.listen(port, () => console.log(`🚀 Server running at http://localhost:${port}`));
+
 
