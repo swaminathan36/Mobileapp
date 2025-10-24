@@ -44,7 +44,7 @@ const cors = require('cors');
 const twilio = require('twilio');
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 10000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -80,6 +80,7 @@ app.get("/", (req, res) => {
 
 
 app.listen(port, "0.0.0.0", () => console.log(`🚀 Server running at port ${port}`));
+
 
 
 
